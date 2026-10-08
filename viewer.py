@@ -177,11 +177,11 @@ class Viewer(QtWidgets.QMainWindow):
         self.setCentralWidget(central)
         top = QtWidgets.QHBoxLayout()
         title = QtWidgets.QVBoxLayout()
-        title.addWidget(label("3D POINT CLOUD VIEWER", "eyebrow"))
+        title.addWidget(label("VISUALIZATION / GEOMETRY", "eyebrow"))
         title.addWidget(label(APP_NAME, "brand"))
         top.addLayout(title)
         top.addStretch()
-        top.addWidget(label("BIN / PLY / PCD 포인트 클라우드 뷰어", "muted"))
+        top.addWidget(label("BIN / PLY / PCD · 시각화·측정·기하 검출", "muted"))
         self.open_button = QtWidgets.QPushButton("포인트 클라우드 열기…")
         self.open_button.setObjectName("primary")
         self.open_button.clicked.connect(self.choose_file)
@@ -1294,7 +1294,7 @@ class Viewer(QtWidgets.QMainWindow):
 
 
 def main():
-    parser = argparse.ArgumentParser(description=f"{APP_NAME} BIN / PLY / PCD 포인트 클라우드 뷰어")
+    parser = argparse.ArgumentParser(description=f"{APP_NAME} — BIN / PLY / PCD 시각화·측정·기하 검출")
     parser.add_argument("file", nargs="?", help="처음 열 BIN / PLY / PCD 파일")
     parser.add_argument("--root", type=Path, default=DEFAULT_ROOT, help="포인트 클라우드 검색 폴더 (기본: 앱 폴더 내 data)")
     args = parser.parse_args()

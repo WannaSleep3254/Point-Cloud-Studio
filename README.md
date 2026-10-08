@@ -1,6 +1,6 @@
 # Point Cloud Studio
 
-**Explore 3D point clouds, detect circular contours and dominant planes, and measure distances in an interactive desktop workspace.**
+**Point-cloud visualization, measurement, and geometric feature detection.**
 
 ![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)
 ![PyQt5](https://img.shields.io/badge/UI-PyQt5-41CD52)
@@ -13,7 +13,7 @@
 
 ## Overview
 
-Point Cloud Studio is a Python desktop application for inspecting XYZ/RGB point clouds. It combines interactive VTK rendering with a PyQt5 interface, NumPy geometry analysis, and readers for PLY, PCD, and a documented binary layout.
+Point Cloud Studio is a Python desktop workspace for visualizing and geometrically inspecting XYZ/RGB point clouds. It combines interactive VTK rendering with a PyQt5 interface, NumPy geometry analysis, and readers for PLY, PCD, and a documented binary layout.
 
 Load a scan, adjust its display budget and Z range, then inspect dominant planes or estimate circular boundaries without manually selecting circle points. Two-point distance measurement, coordinate readouts, and PLY/PCD export support further analysis. Coordinates remain in the source file's units throughout the workflow.
 
@@ -33,18 +33,22 @@ Load a scan, adjust its display budget and Z range, then inspect dominant planes
 
 The current interface and detailed user guide are in Korean. This README provides an English introduction and setup guide.
 
-## Edition proposal: Lite and Pro
+## Workflow proposal: Viewer and Inspection
 
-**Status: proposed product structure.** This repository currently ships one application named **Point Cloud Studio**, including all implemented features listed below. Separate Lite/Pro packages, an edition selector, and edition-specific launch commands have not been implemented.
+**Status: proposed workflow organization.** This repository ships one application named **Point Cloud Studio**, with all the implemented features listed below available together. Viewer and Inspection describe possible future workspaces within this application. A mode selector, separate packages, and mode-specific launch commands have not been implemented.
 
-- **Point Cloud Studio Lite** would focus on opening, viewing, filtering the displayed Z range, and exporting point clouds.
-- **Point Cloud Studio Pro** would add geometric inspection: two-point distances, automatic circular-contour detection, and dominant-plane detection.
+This proposal replaces the earlier Lite/Pro terminology with names that describe each workflow:
+
+- **Viewer** would group file loading, navigation, display controls, Z-range filtering, and point-cloud export.
+- **Inspection** would retain the Viewer tools and add two-point measurements, automatic circular-contour detection, and dominant-plane detection.
+
+Here, inspection means geometric exploration and estimation. The application does not currently provide calibrated metrology, tolerance-based acceptance decisions, or inspection reports.
 
 ### Features matrix
 
-The Lite/Pro columns describe the proposed allocation of existing features; the final column records what is available in the current single application.
+The Viewer/Inspection columns describe the proposed grouping of existing tools; the final column records what is available in the current single application.
 
-| Capability | Lite — proposed | Pro — proposed | Current application |
+| Capability | Viewer — proposed | Inspection — proposed | Current application |
 | --- | --- | --- | --- |
 | BIN / PLY / PCD loading, folder browsing, and drag-and-drop | Included | Included | Implemented |
 | Interactive rotation, pan, zoom, and standard views | Included | Included | Implemented |
@@ -57,17 +61,23 @@ The Lite/Pro columns describe the proposed allocation of existing features; the 
 
 ### Shared technology
 
-Both proposed editions would share the existing **Python, PyQt5, VTK, and NumPy** core. Lite describes a reduced tool set; a smaller distribution or a rendering-speed advantage has not been established. The current release has no custom C++ engine, QML/QRHI interface, PCL integration, or Open3D integration.
+Both proposed workspaces would share the existing **Python, PyQt5, VTK, and NumPy** core. The distinction is the set of tools shown for a task; it does not imply different performance, dependencies, or licensing tiers. The current release has no custom C++ engine, QML/QRHI interface, PCL integration, or Open3D integration.
 
 ### Advanced scope to define
 
 The current detection targets are **nearly planar circular boundaries** and **dominant planes**. Circular-boundary fitting does not establish that an object is a cylindrical hole or determine its depth.
 
-The following are possible future extensions, not current Pro capabilities or committed deliverables:
+The following are possible future extensions, not implemented capabilities or committed deliverables:
 
+- Three-dimensional region selection, measurement-result export, and saved inspection sessions.
+- Refining measurements against original source points independently of the display sample.
 - Three-dimensional cylinder or sphere fitting, with target geometry and acceptance tolerances to be specified.
 - Part or shape classification, with the object classes and reference data to be defined.
 - Live LiDAR acquisition or robot-cell integration, with the sensor SDK, interfaces, and coordinate calibration to be selected.
+
+### Project identity
+
+This repository is an independent project by [WannaSleep3254](https://github.com/WannaSleep3254). It is not affiliated with [OpenAEC Foundation's Open Pointcloud Studio](https://github.com/OpenAEC-Foundation/open-pointcloud-studio).
 
 ## Run locally
 

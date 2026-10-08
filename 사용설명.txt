@@ -1,6 +1,15 @@
 Point Cloud Studio
 ==================
 
+포인트 클라우드 시각화·측정·기하 형상 검출
+Point-cloud visualization, measurement, and geometric feature detection.
+
+현재 배포본은 모든 기능을 함께 제공하는 단일 프로그램입니다.
+README의 Viewer / Inspection은 향후 작업별 도구 구성을 위한 제안입니다.
+별도 버전이나 모드 전환은 아직 구현되지 않았습니다.
+측정·검출 결과는 입력 데이터에 대한 기하 추정값이며,
+교정된 정밀 계측이나 공차에 따른 합격/불합격 판정 기능은 제공하지 않습니다.
+
 실행
   터미널에서 이 폴더로 이동한 뒤 ./run.sh 실행.
   Python 3.10 이상과 NumPy, PyQt5, VTK가 필요합니다 (requirements.txt 참고).
