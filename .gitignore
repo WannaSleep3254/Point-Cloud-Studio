@@ -1,0 +1,25 @@
+# Python and local environments
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+
+# Local point clouds, exports and machine-specific files
+/data/*
+!/data/.gitkeep
+*.bin
+*.ply
+*.pcd
+*.png
+*.jpg
+*.jpeg
+*.gif
+!/docs/preview.png
+!/docs/demo.gif
+*.npy
+*.npz
+*.log
+.env
+.env.*
+.DS_Store
