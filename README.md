@@ -33,6 +33,42 @@ Load a scan, adjust its display budget and Z range, then inspect dominant planes
 
 The current interface and detailed user guide are in Korean. This README provides an English introduction and setup guide.
 
+## Edition proposal: Lite and Pro
+
+**Status: proposed product structure.** This repository currently ships one application named **Point Cloud Studio**, including all implemented features listed below. Separate Lite/Pro packages, an edition selector, and edition-specific launch commands have not been implemented.
+
+- **Point Cloud Studio Lite** would focus on opening, viewing, filtering the displayed Z range, and exporting point clouds.
+- **Point Cloud Studio Pro** would add geometric inspection: two-point distances, automatic circular-contour detection, and dominant-plane detection.
+
+### Features matrix
+
+The Lite/Pro columns describe the proposed allocation of existing features; the final column records what is available in the current single application.
+
+| Capability | Lite — proposed | Pro — proposed | Current application |
+| --- | --- | --- | --- |
+| BIN / PLY / PCD loading, folder browsing, and drag-and-drop | Included | Included | Implemented |
+| Interactive rotation, pan, zoom, and standard views | Included | Included | Implemented |
+| Display sampling, point size, and coordinate / RGB coloring | Included | Included | Implemented |
+| Z-range filtering and invalid-coordinate handling | Included | Included | Implemented |
+| Displayed-point export to PLY / PCD and viewport capture to PNG | Included | Included | Implemented |
+| Two-point distance and XYZ difference measurement | — | Included | Implemented |
+| Automatic planar circular-contour detection and diameter estimates | — | Included | Implemented |
+| Dominant-plane detection, supporting points, normals, and residuals | — | Included | Implemented |
+
+### Shared technology
+
+Both proposed editions would share the existing **Python, PyQt5, VTK, and NumPy** core. Lite describes a reduced tool set; a smaller distribution or a rendering-speed advantage has not been established. The current release has no custom C++ engine, QML/QRHI interface, PCL integration, or Open3D integration.
+
+### Advanced scope to define
+
+The current detection targets are **nearly planar circular boundaries** and **dominant planes**. Circular-boundary fitting does not establish that an object is a cylindrical hole or determine its depth.
+
+The following are possible future extensions, not current Pro capabilities or committed deliverables:
+
+- Three-dimensional cylinder or sphere fitting, with target geometry and acceptance tolerances to be specified.
+- Part or shape classification, with the object classes and reference data to be defined.
+- Live LiDAR acquisition or robot-cell integration, with the sensor SDK, interfaces, and coordinate calibration to be selected.
+
 ## Run locally
 
 Python 3.10+, NumPy, PyQt5, VTK, and a graphical desktop with OpenGL support are required. The application has been validated on Linux with Python 3.10, PyQt5 5.15, VTK 9.1, and NumPy 1.21.
